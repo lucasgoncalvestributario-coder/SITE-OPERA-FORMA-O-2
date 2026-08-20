@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Barlow Condensed', 'Chakra Petch', sans-serif;
+    --font-heading: 'Chakra Petch', 'Barlow Condensed', sans-serif;
+    --font-body: 'Outfit', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #07080a;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.03em;
+  }
+}
+
+.font-display {
+  font-family: 'Barlow Condensed', 'Chakra Petch', sans-serif;
+}
+
+.font-heading {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.font-body {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Custom Gold Glow & Gold Metallic Gradients */
+.gold-glow {
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
+}
+
+.gold-glow-lg {
+  box-shadow: 0 0 65px rgba(212, 175, 55, 0.55);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #fff4b8 0%, #f3c644 45%, #d4a017 80%, #996e00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle gold section backgrounds */
+.bg-gold-gradient-dark {
+  background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12) 0%, rgba(12, 13, 17, 0.98) 70%), #07080a;
+}
+
+.bg-gold-gradient-subtle {
+  background: linear-gradient(180deg, #07080a 0%, #14110b 35%, #18140c 65%, #07080a 100%);
+}
+
+.bg-gold-gradient-card {
+  background: linear-gradient(145deg, rgba(28, 24, 16, 0.85) 0%, rgba(12, 13, 17, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+}
+
+.bg-gold-gradient-card:hover {
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.15);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #07080a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2414;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}

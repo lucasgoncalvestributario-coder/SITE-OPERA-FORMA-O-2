@@ -1,0 +1,196 @@
+import React, { useState, useEffect } from 'react';
+import { MessageSquare, Menu, X, Instagram } from 'lucide-react';
+import { COMPANY_INFO } from '../data/content';
+import { OFFICIAL_LOGO_URL } from './LoadingScreen';
+
+interface NavbarProps {
+  onOpenCourseModal?: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Início', href: '#' },
+    { name: 'Diferenciais', href: '#diferenciais' },
+    { name: 'Cursos', href: '#cursos' },
+    { name: 'Normas (NRs)', href: '#normas' },
+    { name: 'Garantia', href: '#garantia' },
+    { name: 'Galeria', href: '#galeria' },
+    { name: 'Unidades', href: '#unidades' },
+    { name: 'FAQ', href: '#faq' },
+    { name: 'Contato', href: '#contato' },
+  ];
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#07080a]/95 backdrop-blur-md border-b border-amber-500/20 py-2 shadow-[0_10px_35px_rgba(0,0,0,0.9)]'
+          : 'bg-gradient-to-b from-black/95 via-black/70 to-transparent py-3 sm:py-4'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          
+          {/* Prominent Yellow Logo with Elegant Golden Glow */}
+          <a
+            href="#"
+            className="group flex items-center relative py-1 focus:outline-none"
+            title="Opera Formação - Início"
+          >
+            {/* Elegant Golden Aura Glow */}
+            <div className="absolute inset-0 bg-yellow-400/20 rounded-full blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+            <img
+              src={OFFICIAL_LOGO_URL}
+              alt="Logo Opera Formação"
+              className={`relative w-auto object-contain transition-all duration-300 filter drop-shadow-[0_0_16px_rgba(234,179,8,0.55)] group-hover:drop-shadow-[0_0_24px_rgba(234,179,8,0.85)] ${
+                isScrolled
+                  ? 'h-14 sm:h-16 md:h-18'
+                  : 'h-16 sm:h-20 md:h-24 lg:h-28'
+              }`}
+              referrerPolicy="no-referrer"
+            />
+          </a>
+
+          {/* Desktop Nav Links */}
+          <nav className="hidden xl:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-xs font-bold text-gray-300 hover:text-amber-300 transition-colors uppercase tracking-widest relative group font-body"
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-500 group-hover:w-full transition-all duration-300" />
+              </a>
+            ))}
+          </nav>
+
+          {/* Header Action Button (Clean & Strategic) */}
+          <div className="hidden sm:flex items-center gap-2.5 lg:gap-3">
+            {/* Instagram Oficial */}
+            <a
+              href="https://www.instagram.com/escola.opera.formacao/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-2 bg-[#12141c] hover:bg-[#181a24] text-amber-300 hover:text-amber-200 font-extrabold text-[11px] uppercase tracking-wider rounded-xl border border-amber-500/30 hover:border-amber-400 transition-all font-display"
+              title="Instagram Oficial: @escola.opera.formacao"
+            >
+              <Instagram className="w-3.5 h-3.5 text-amber-400" />
+              <span className="hidden md:inline">@ESCOLA.OPERA.FORMACAO</span>
+            </a>
+
+            {onOpenCourseModal && (
+              <button
+                onClick={onOpenCourseModal}
+                className="px-3.5 lg:px-4 py-2 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(212,175,55,0.35)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] transition-all font-display"
+              >
+                Garantir Vaga
+              </button>
+            )}
+
+            <a
+              href={COMPANY_INFO.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3.5 lg:px-4 py-2 bg-[#12141c] hover:bg-[#181a24] text-amber-300 font-extrabold text-xs uppercase tracking-wider rounded-xl border border-amber-500/40 hover:border-amber-400 transition-all font-display"
+            >
+              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <span className="hidden lg:inline">WhatsApp</span>
+            </a>
+          </div>
+
+          {/* Mobile Hamburger Button */}
+          <div className="flex xl:hidden items-center gap-2">
+            <a
+              href="https://www.instagram.com/escola.opera.formacao/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex sm:hidden items-center gap-1 px-2.5 py-2 bg-[#12141c] text-amber-300 text-[10px] font-bold uppercase rounded-xl border border-amber-500/30"
+              title="Instagram"
+            >
+              <Instagram className="w-3.5 h-3.5 text-amber-400" />
+              <span>Instagram</span>
+            </a>
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              aria-label="Menu de Navegação"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="xl:hidden bg-[#07080a]/98 backdrop-blur-2xl border-b border-amber-500/30 px-6 pt-4 pb-8 mt-2 space-y-4">
+          <nav className="flex flex-col space-y-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-gray-200 hover:text-amber-300 font-bold uppercase text-sm py-2.5 px-3 rounded-xl hover:bg-amber-500/10 transition font-display"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          <div className="pt-4 border-t border-amber-500/20 flex flex-col gap-2">
+            {onOpenCourseModal && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenCourseModal();
+                }}
+                className="w-full py-3 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 text-black font-extrabold text-xs uppercase tracking-wider rounded-xl font-display shadow-md"
+              >
+                Garantir Minha Vaga
+              </button>
+            )}
+
+            <a
+              href="https://www.instagram.com/escola.opera.formacao/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 py-3 bg-[#11131a] hover:bg-[#181a24] text-amber-300 font-bold text-xs uppercase rounded-xl border border-amber-500/40 font-display"
+            >
+              <Instagram className="w-4 h-4 text-amber-400" />
+              <span>Instagram @ESCOLA.OPERA.FORMACAO</span>
+            </a>
+
+            <a
+              href={COMPANY_INFO.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 py-3 bg-[#11131a] text-amber-300 font-bold text-xs uppercase rounded-xl border border-amber-500/40 font-display"
+            >
+              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <span>Falar no WhatsApp ({COMPANY_INFO.phoneFormatted})</span>
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};

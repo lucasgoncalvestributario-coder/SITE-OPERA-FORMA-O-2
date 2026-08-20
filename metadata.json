@@ -1,0 +1,6 @@
+{
+  "name": "Opera Formação - Cursos de Máquinas Pesadas",
+  "description": "Landing page oficial e moderna da Opera Formação, escola especializada em cursos de operação de máquinas pesadas credenciada pelo CREA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
