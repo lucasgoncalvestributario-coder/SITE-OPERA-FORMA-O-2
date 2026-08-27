@@ -82,7 +82,7 @@ export const DirectorSection: React.FC = () => {
                   </div>
                   <div>
                     <span className="text-xl sm:text-2xl font-black text-slate-900 font-display uppercase tracking-tight block">
-                      Mais de 5 Anos
+                      Mais de 3 Anos
                     </span>
                     <span className="text-xs sm:text-sm font-semibold text-slate-600 font-body">
                       De experiência no ramo

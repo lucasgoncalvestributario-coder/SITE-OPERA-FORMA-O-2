@@ -10,7 +10,7 @@ export const COMPANY_INFO = {
   instagram: '@ESCOLA.OPERA.FORMACAO',
   instagramUrl: 'https://www.instagram.com/escola.opera.formacao/',
   facebook: 'Opera Formação',
-  facebookUrl: 'https://www.facebook.com/operaformacao',
+  facebookUrl: 'https://www.facebook.com/profile.php?id=61570351162766&locale=pt_BR',
   address: 'Rua Jose Bonifacio Malburg, 143',
   businessHours: 'das 07h30 às 00h (Atendimento diário)',
   creaCredencial: 'Credenciado CREA-BR / Reg. Nacional de Treinamentos',
@@ -182,7 +182,7 @@ export const DIRECTOR_INFO = {
   role: 'Diretor e CEO da Opera Formação',
   photo: 'https://i.ibb.co/0jB2Ycnv/Whats-App-Image-2026-08-20-at-14-00-24.jpg',
   stats: [
-    { label: 'Experiência no Ramo', value: 'Mais de 5 Anos' },
+    { label: 'Experiência no Ramo', value: 'Mais de 3 Anos' },
     { label: 'Alunos Formados', value: 'Mais de 1.650' },
     { label: 'Cidades Atendidas', value: '26 Cidades' },
   ],
