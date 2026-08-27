@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { MessageSquare, Menu, X, Instagram } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { WhatsAppIcon, InstagramIcon } from './BrandIcons';
 import { COMPANY_INFO } from '../data/content';
 import { OFFICIAL_LOGO_URL } from './LoadingScreen';
 
@@ -25,12 +26,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
 
   const navLinks = [
     { name: 'Início', href: '#' },
-    { name: 'Diferenciais', href: '#diferenciais' },
-    { name: 'Cursos', href: '#cursos' },
-    { name: 'Normas (NRs)', href: '#normas' },
-    { name: 'Garantia', href: '#garantia' },
     { name: 'Galeria', href: '#galeria' },
-    { name: 'Unidades', href: '#unidades' },
+    { name: 'Máquinas', href: '#maquinas' },
+    { name: 'Normas', href: '#normas' },
+    { name: 'Garantia', href: '#garantia' },
+    { name: 'Diretoria', href: '#diretor' },
+    { name: 'Cidades', href: '#unidades' },
     { name: 'FAQ', href: '#faq' },
     { name: 'Contato', href: '#contato' },
   ];
@@ -88,10 +89,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
               href="https://www.instagram.com/escola.opera.formacao/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-2 bg-[#12141c] hover:bg-[#181a24] text-amber-300 hover:text-amber-200 font-extrabold text-[11px] uppercase tracking-wider rounded-xl border border-amber-500/30 hover:border-amber-400 transition-all font-display"
+              className="flex items-center gap-1.5 px-3 py-2 bg-[#12141c] hover:bg-[#181a24] text-amber-400 hover:text-amber-300 font-extrabold text-[11px] uppercase tracking-wider rounded-xl border border-amber-500/30 hover:border-amber-400 transition-all font-display"
               title="Instagram Oficial: @escola.opera.formacao"
             >
-              <Instagram className="w-3.5 h-3.5 text-amber-400" />
+              <InstagramIcon className="w-3.5 h-3.5 text-amber-400" />
               <span className="hidden md:inline">@ESCOLA.OPERA.FORMACAO</span>
             </a>
 
@@ -108,9 +109,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
               href={COMPANY_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3.5 lg:px-4 py-2 bg-[#12141c] hover:bg-[#181a24] text-amber-300 font-extrabold text-xs uppercase tracking-wider rounded-xl border border-amber-500/40 hover:border-amber-400 transition-all font-display"
+              className="flex items-center gap-1.5 px-3.5 lg:px-4 py-2 bg-[#12141c] hover:bg-[#181a24] text-emerald-400 font-extrabold text-xs uppercase tracking-wider rounded-xl border border-[#25D366]/40 hover:border-[#25D366] transition-all font-display"
             >
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
               <span className="hidden lg:inline">WhatsApp</span>
             </a>
           </div>
@@ -121,10 +122,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
               href="https://www.instagram.com/escola.opera.formacao/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex sm:hidden items-center gap-1 px-2.5 py-2 bg-[#12141c] text-amber-300 text-[10px] font-bold uppercase rounded-xl border border-amber-500/30"
+              className="flex sm:hidden items-center gap-1 px-2.5 py-2 bg-[#12141c] text-amber-400 text-[10px] font-bold uppercase rounded-xl border border-amber-500/30"
               title="Instagram"
             >
-              <Instagram className="w-3.5 h-3.5 text-amber-400" />
+              <InstagramIcon className="w-3.5 h-3.5 text-amber-400" />
               <span>Instagram</span>
             </a>
 
@@ -173,9 +174,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
               href="https://www.instagram.com/escola.opera.formacao/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-3 bg-[#11131a] hover:bg-[#181a24] text-amber-300 font-bold text-xs uppercase rounded-xl border border-amber-500/40 font-display"
+              className="flex items-center justify-center gap-2 py-3 bg-[#11131a] hover:bg-[#181a24] text-amber-400 font-bold text-xs uppercase rounded-xl border border-amber-500/40 font-display"
             >
-              <Instagram className="w-4 h-4 text-amber-400" />
+              <InstagramIcon className="w-4 h-4 text-amber-400" />
               <span>Instagram @ESCOLA.OPERA.FORMACAO</span>
             </a>
 
@@ -183,9 +184,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
               href={COMPANY_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-3 bg-[#11131a] text-amber-300 font-bold text-xs uppercase rounded-xl border border-amber-500/40 font-display"
+              className="flex items-center justify-center gap-2 py-3 bg-[#11131a] text-[#25D366] font-bold text-xs uppercase rounded-xl border border-[#25D366]/40 font-display"
             >
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
               <span>Falar no WhatsApp ({COMPANY_INFO.phoneFormatted})</span>
             </a>
           </div>

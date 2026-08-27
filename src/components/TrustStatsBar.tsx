@@ -5,13 +5,13 @@ export const TrustStatsBar: React.FC = () => {
   const stats = [
     {
       icon: <Users className="w-6 h-6 text-black flex-shrink-0" />,
-      title: '+15 Mil Alunos',
+      title: '+1.650 Alunos',
       subtitle: 'Formados no Brasil',
     },
     {
       icon: <Award className="w-6 h-6 text-black flex-shrink-0" />,
       title: 'Certificado CREA',
-      subtitle: 'Emissão em 24 Horas',
+      subtitle: 'Emissão em até 24 Horas',
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-black flex-shrink-0" />,
@@ -25,8 +25,8 @@ export const TrustStatsBar: React.FC = () => {
     },
     {
       icon: <MapPin className="w-6 h-6 text-black flex-shrink-0" />,
-      title: '13 Unidades',
-      subtitle: 'Presença Nacional',
+      title: '26 Cidades',
+      subtitle: 'Polos de Atendimento',
     },
   ];
 
@@ -57,3 +57,4 @@ export const TrustStatsBar: React.FC = () => {
     </section>
   );
 };
+

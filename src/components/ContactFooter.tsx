@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { COMPANY_INFO } from '../data/content';
-import { MessageSquare, Phone, Instagram, Facebook, MapPin, Clock, HardHat, Send, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { COMPANY_INFO, CREA_LOGO_URL, CITIES_LIST } from '../data/content';
+import { Phone, MapPin, Clock, Send, ShieldCheck } from 'lucide-react';
+import { WhatsAppIcon, InstagramIcon, FacebookIcon } from './BrandIcons';
 import { OFFICIAL_LOGO_URL } from './LoadingScreen';
 
 export const ContactFooter: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
-    phone: '',
-    city: 'Itajaí',
-    courseInterest: 'Trilha Completa (3 Máquinas)',
+    city: 'Itajaí - SC',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `Olá! Meu nome é ${formState.name}. Tenho interesse no curso de ${formState.courseInterest} para a cidade de ${formState.city}. Meu telefone é ${formState.phone}. Gostaria de mais informações sobre datas e valores!`;
+    const message = `Olá! Meu nome é ${formState.name}. Tenho interesse no curso de formação prática em máquinas pesadas (3 Máquinas) para a cidade de ${formState.city}. Gostaria de mais informações sobre datas e valores!`;
     const whatsappUrl = `https://wa.me/554791572989?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -35,15 +34,27 @@ export const ContactFooter: React.FC = () => {
           {/* Left Column - Contact Info & Socials */}
           <div className="lg:col-span-5 space-y-8">
             
-            {/* Standalone Large Logo (No box frame) */}
-            <div className="relative inline-flex items-center group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse pointer-events-none" />
-              <img
-                src={OFFICIAL_LOGO_URL}
-                alt="Logo Oficial da Escola"
-                className="relative h-20 sm:h-28 md:h-32 w-auto object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.7)]"
-                referrerPolicy="no-referrer"
-              />
+            {/* Standalone Large Logo with Small CREA Logo side by side */}
+            <div className="flex items-center flex-wrap gap-4 sm:gap-6">
+              <div className="relative inline-flex items-center group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse pointer-events-none" />
+                <img
+                  src={OFFICIAL_LOGO_URL}
+                  alt="Logo Oficial da Escola"
+                  className="relative h-16 sm:h-20 md:h-24 w-auto object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.7)]"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+
+              {/* Small CREA Logo */}
+              <div className="bg-white/95 px-3 py-1.5 rounded-xl border border-amber-500/40 shadow-md flex items-center justify-center">
+                <img
+                  src={CREA_LOGO_URL}
+                  alt="Logotipo Oficial do CREA"
+                  className="h-7 sm:h-8 w-auto object-contain"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
             </div>
 
             <p className="text-gray-300 text-sm leading-relaxed font-body">
@@ -58,14 +69,14 @@ export const ContactFooter: React.FC = () => {
                 href={COMPANY_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3.5 rounded-xl bg-gold-gradient-card border border-amber-500/25 hover:border-amber-400/60 transition group"
+                className="flex items-center gap-3 p-3.5 rounded-xl bg-gold-gradient-card border border-amber-500/25 hover:border-[#25D366]/60 transition group"
               >
-                <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 group-hover:bg-amber-400 group-hover:text-black transition">
-                  <MessageSquare className="w-5 h-5" />
+                <div className="p-2 rounded-lg bg-[#25D366]/20 text-[#25D366] group-hover:bg-[#25D366] group-hover:text-black transition">
+                  <WhatsAppIcon className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="text-gray-400 text-[11px] block uppercase font-mono">WhatsApp Oficial</span>
-                  <span className="text-amber-300 font-bold text-sm group-hover:text-amber-200 transition font-mono">
+                  <span className="text-amber-300 font-bold text-sm group-hover:text-[#25D366] transition font-mono">
                     {COMPANY_INFO.phoneFormatted}
                   </span>
                 </div>
@@ -107,9 +118,9 @@ export const ContactFooter: React.FC = () => {
                   href={COMPANY_INFO.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-gradient-card border border-amber-500/30 hover:border-amber-400/60 text-gray-300 hover:text-amber-300 text-xs font-bold transition font-display"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-gradient-card border border-amber-500/30 hover:border-amber-400 text-gray-300 hover:text-amber-300 text-xs font-bold transition font-display"
                 >
-                  <Instagram className="w-4 h-4 text-amber-400" />
+                  <InstagramIcon className="w-4 h-4 text-amber-400" />
                   <span>{COMPANY_INFO.instagram}</span>
                 </a>
 
@@ -117,9 +128,9 @@ export const ContactFooter: React.FC = () => {
                   href={COMPANY_INFO.facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-gradient-card border border-amber-500/30 hover:border-amber-400/60 text-gray-300 hover:text-amber-300 text-xs font-bold transition font-display"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-gradient-card border border-amber-500/30 hover:border-blue-500/60 text-gray-300 hover:text-blue-300 text-xs font-bold transition font-display"
                 >
-                  <Facebook className="w-4 h-4 text-amber-400" />
+                  <FacebookIcon className="w-4 h-4 text-blue-400" />
                   <span>{COMPANY_INFO.facebook}</span>
                 </a>
               </div>
@@ -139,7 +150,7 @@ export const ContactFooter: React.FC = () => {
                   Pré-Inscrição & Consulta de Vagas
                 </h3>
                 <p className="text-gray-300 text-xs mt-1 font-body">
-                  Preencha os campos abaixo para ser redirecionado com sua mensagem personalizada.
+                  Preencha seu nome e cidade para consultar as próximas turmas e valores.
                 </p>
               </div>
 
@@ -160,21 +171,6 @@ export const ContactFooter: React.FC = () => {
                   />
                 </div>
 
-                {/* Phone */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 uppercase mb-1.5 font-mono">
-                    Telefone com DDD (WhatsApp)
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Ex: (47) 99999-8888"
-                    value={formState.phone}
-                    onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#0c0d12] border border-amber-500/30 text-white text-sm focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 transition font-body"
-                  />
-                </div>
-
                 {/* City Selection */}
                 <div>
                   <label className="block text-xs font-bold text-gray-300 uppercase mb-1.5 font-mono">
@@ -185,44 +181,18 @@ export const ContactFooter: React.FC = () => {
                     onChange={(e) => setFormState({ ...formState, city: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-[#0c0d12] border border-amber-500/30 text-white text-sm focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 transition font-body"
                   >
-                    <option value="Itajaí">Itajaí / SC</option>
-                    <option value="Palhoça">Palhoça / SC</option>
-                    <option value="Balneário Camboriú">Balneário Camboriú / SC</option>
-                    <option value="Porto Alegre">Porto Alegre / RS (+ Empilhadeira)</option>
-                    <option value="Passo Fundo">Passo Fundo / RS</option>
-                    <option value="Erechim">Erechim / RS</option>
-                    <option value="Curitiba">Curitiba / PR</option>
-                    <option value="Londrina">Londrina / PR</option>
-                    <option value="Toledo">Toledo / PR</option>
-                    <option value="Sorocaba">Sorocaba / SP</option>
-                    <option value="Diadema">Diadema / SP</option>
-                    <option value="Goiânia">Goiânia / GO</option>
-                    <option value="Rio de Janeiro">Rio de Janeiro / RJ</option>
-                  </select>
-                </div>
-
-                {/* Course Interest */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 uppercase mb-1.5 font-mono">
-                    Interesse Principal
-                  </label>
-                  <select
-                    value={formState.courseInterest}
-                    onChange={(e) => setFormState({ ...formState, courseInterest: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#0c0d12] border border-amber-500/30 text-white text-sm focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 transition font-body"
-                  >
-                    <option value="Trilha Completa (3 Máquinas)">Trilha Completa (Mini Pá, Retroescavadeira, Escavadeira)</option>
-                    <option value="Escavadeira Hidráulica">Escavadeira Hidráulica (Individual)</option>
-                    <option value="Retroescavadeira">Retroescavadeira (Individual)</option>
-                    <option value="Mini Pá Carregadeira">Mini Pá Carregadeira (Bobcat)</option>
-                    <option value="Empilhadeira (Porto Alegre)">Empilhadeira (Especial Porto Alegre)</option>
+                    {CITIES_LIST.map((city, idx) => (
+                      <option key={idx} value={`${city.name} - ${city.state}`}>
+                        {city.name} / {city.state}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(212,175,55,0.4)] transition flex items-center justify-center gap-2 transform hover:-translate-y-0.5 font-display"
+                  className="w-full py-4 px-6 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(212,175,55,0.4)] transition flex items-center justify-center gap-2 transform hover:-translate-y-0.5 font-display mt-2"
                 >
                   <Send className="w-4 h-4 text-black" />
                   <span>Enviar e Falar no WhatsApp</span>
@@ -237,13 +207,30 @@ export const ContactFooter: React.FC = () => {
 
         {/* Footer Bottom Rights */}
         <div className="pt-8 border-t border-amber-500/20 text-center sm:flex sm:items-center sm:justify-between text-xs text-gray-400 font-body">
-          <p>
-            © {new Date().getFullYear()} <strong className="text-amber-300 font-bold font-display">Opera Formação</strong>. Todos os direitos reservados.
-          </p>
+          <div className="flex items-center justify-center sm:justify-start gap-3">
+            <img
+              src={OFFICIAL_LOGO_URL}
+              alt="Logo Opera Formação"
+              className="h-6 w-auto object-contain"
+              referrerPolicy="no-referrer"
+            />
+            <span className="text-amber-500/40">•</span>
+            <div className="bg-white/90 px-2 py-0.5 rounded border border-amber-500/30">
+              <img
+                src={CREA_LOGO_URL}
+                alt="Logo CREA"
+                className="h-4 w-auto object-contain"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <p className="ml-1 text-[11px] text-gray-400">
+              © {new Date().getFullYear()} <strong className="text-amber-300 font-bold font-display">Opera Formação</strong>. Todos os direitos reservados.
+            </p>
+          </div>
 
           <div className="mt-4 sm:mt-0 flex items-center justify-center gap-4 text-gray-400 font-mono text-[11px]">
-            <span className="flex items-center gap-1 text-amber-400/90">
-              <ShieldCheck className="w-3.5 h-3.5 inline" /> Credenciado CREA
+            <span className="flex items-center gap-1 text-amber-400/90 font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5 inline text-amber-400" /> Credenciado CREA
             </span>
             <span>•</span>
             <span>CNPJ e Registro Oficial</span>

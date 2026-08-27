@@ -81,3 +81,30 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #d4af37;
 }
+
+/* Animated Light Sweep through Text */
+@keyframes shineLight {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shine-light {
+  background: linear-gradient(
+    110deg,
+    #fef08a 0%,
+    #fbbf24 25%,
+    #ffffff 50%,
+    #f59e0b 75%,
+    #fef08a 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shineLight 3s linear infinite;
+  display: inline-block;
+}

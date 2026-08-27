@@ -1,93 +1,63 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { RotateCcw, CheckCircle2, Shield, HeartHandshake, Award } from 'lucide-react';
+import { RotateCcw } from 'lucide-react';
 import { LEARNING_GUARANTEE } from '../data/content';
+import { OFFICIAL_LOGO_URL } from './LoadingScreen';
 
 export const LearningGuaranteeSection: React.FC = () => {
   return (
-    <section className="relative py-24 sm:py-28 bg-[#f8fafc] text-slate-900 overflow-hidden border-t border-slate-200">
-      {/* Background Ambience */}
-      <div className="absolute top-1/2 right-1/4 w-[600px] h-[500px] bg-amber-100/50 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:28px_28px] opacity-60 pointer-events-none" />
+    <section id="garantia" className="relative py-20 sm:py-24 bg-[#090b10] text-white overflow-hidden border-t border-amber-500/20">
+      {/* Subtle Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Main Guarantee Card Container */}
-        <div className="relative rounded-3xl bg-white border-2 border-slate-200 p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden">
-          
-          {/* Subtle accent bar on top */}
-          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500"></div>
+        {/* Main Highlighted Container */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative rounded-3xl bg-gradient-to-br from-[#12141d] via-[#0f1118] to-[#0c0d12] border-2 border-amber-400/50 p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden"
+        >
+          {/* Top Golden Accent Line */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 shadow-[0_0_15px_rgba(212,175,55,0.8)]"></div>
 
-          {/* Top Decorative Tag */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-amber-400 text-xs font-mono uppercase tracking-widest mb-6 shadow-sm">
-            <HeartHandshake className="w-4 h-4 text-amber-400" />
-            <span>{LEARNING_GUARANTEE.badge}</span>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             
-            {/* Left Content */}
-            <div className="lg:col-span-8 space-y-5">
-              
-              <div className="space-y-2">
-                <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-widest text-amber-600 block">
-                  {LEARNING_GUARANTEE.title}
-                </span>
-
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 uppercase font-display tracking-tight leading-[1.08]">
-                  APRENDEU? <span className="text-amber-600">ÓTIMO.</span><br />
-                  AINDA PRECISA REFORÇAR? <span className="text-slate-900 underline decoration-amber-400 decoration-wavy">VOLTE.</span>
-                </h2>
+            {/* Left: School Logo & Icon */}
+            <div className="md:col-span-4 flex flex-col items-center justify-center text-center p-6 rounded-2xl bg-black/60 border border-amber-500/30 shadow-inner">
+              <img
+                src={OFFICIAL_LOGO_URL}
+                alt="Opera Formação Logo"
+                className="w-28 sm:w-32 h-auto object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)] mb-3"
+                referrerPolicy="no-referrer"
+              />
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-[11px] font-mono font-bold uppercase tracking-wider">
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Garantia de Ensino</span>
               </div>
+            </div>
 
-              <p className="text-slate-600 text-sm sm:text-base md:text-lg font-body leading-relaxed max-w-2xl">
+            {/* Right: Exact Copy */}
+            <div className="md:col-span-8 space-y-4 text-left">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase font-display tracking-tight leading-tight">
+                {LEARNING_GUARANTEE.headline1} <br />
+                <span className="text-amber-400 underline decoration-amber-400/40">
+                  {LEARNING_GUARANTEE.headline2}
+                </span>
+              </h2>
+
+              <p className="text-gray-200 text-sm sm:text-base md:text-lg font-body leading-relaxed">
                 {LEARNING_GUARANTEE.description}
               </p>
-
-              {/* Benefits Checklist */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                {LEARNING_GUARANTEE.keyPoints.map((point, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 p-3.5 rounded-xl bg-[#f8fafc] border border-slate-200"
-                  >
-                    <div className="p-1 rounded-md bg-amber-100 text-amber-800 flex-shrink-0">
-                      <CheckCircle2 className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs sm:text-sm text-slate-800 font-semibold font-body">
-                      {point}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-            </div>
-
-            {/* Right Visual Pillar */}
-            <div className="lg:col-span-4 flex flex-col items-center justify-center text-center p-8 sm:p-10 rounded-2xl bg-slate-900 text-white border-2 border-slate-900 shadow-2xl">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-400 via-amber-500 to-yellow-400 flex items-center justify-center text-black shadow-[0_0_35px_rgba(212,175,55,0.5)] mb-6 animate-pulse">
-                <RotateCcw className="w-10 h-10 stroke-[2.5]" />
-              </div>
-
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400">
-                Sem Custo Adicional
-              </span>
-
-              <h3 className="text-xl sm:text-2xl font-black text-white uppercase font-display mt-1 tracking-wide">
-                Refaça 100% Grátis
-              </h3>
-
-              <p className="text-xs text-slate-300 font-body mt-3 leading-relaxed">
-                Nosso compromisso é com a sua segurança operacional e total domínio da máquina.
-              </p>
             </div>
 
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>
   );
 };
-

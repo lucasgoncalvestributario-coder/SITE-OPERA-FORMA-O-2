@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FAQ_ITEMS } from '../data/content';
-import { HelpCircle, ChevronDown, MessageSquare } from 'lucide-react';
+import { HelpCircle, ChevronDown } from 'lucide-react';
+import { WhatsAppIcon } from './BrandIcons';
 import { COMPANY_INFO } from '../data/content';
 
 export const FAQSection: React.FC = () => {
@@ -94,7 +95,7 @@ export const FAQSection: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(212,175,55,0.4)] transition font-display transform hover:scale-105"
           >
-            <MessageSquare className="w-5 h-5 text-black" />
+            <WhatsAppIcon className="w-5 h-5 text-black" />
             <span>Falar com Atendente Agora</span>
           </a>
         </div>

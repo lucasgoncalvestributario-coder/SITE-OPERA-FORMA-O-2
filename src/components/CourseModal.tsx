@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, MessageSquare, ShieldCheck, HardHat, Check, ChevronRight } from 'lucide-react';
-import { COMPANY_INFO, LOCATIONS } from '../data/content';
+import { X, HardHat, Check } from 'lucide-react';
+import { WhatsAppIcon } from './BrandIcons';
+import { COMPANY_INFO, CITIES_LIST } from '../data/content';
 
 interface CourseModalProps {
   isOpen: boolean;
@@ -9,14 +10,14 @@ interface CourseModalProps {
 }
 
 export const CourseModal: React.FC<CourseModalProps> = ({ isOpen, onClose }) => {
-  const [selectedCity, setSelectedCity] = useState('Itajaí');
-  const [selectedPackage, setSelectedPackage] = useState('Trilha Completa (3 Máquinas)');
+  const [name, setName] = useState('');
+  const [selectedCity, setSelectedCity] = useState('Itajaí - SC');
 
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = `Olá! Gostaria de garantir minha vaga no curso da Opera Formação.\n\n• Pacote: ${selectedPackage}\n• Unidade: ${selectedCity}\n\nPor favor, me informe o valor e a data da próxima turma!`;
+    const msg = `Olá! Meu nome é ${name}. Gostaria de informações sobre o curso prático de máquinas pesadas (3 Máquinas) para a cidade de ${selectedCity}.\n\nPor favor, me informe o valor e a data da próxima turma!`;
     const whatsappUrl = `https://wa.me/554791572989?text=${encodeURIComponent(msg)}`;
     window.open(whatsappUrl, '_blank');
     onClose();
@@ -50,44 +51,41 @@ export const CourseModal: React.FC<CourseModalProps> = ({ isOpen, onClose }) => 
               Inscrição Opera Formação
             </h3>
             <p className="text-gray-300 text-xs">
-              Escolha sua cidade e o curso desejado para atendimento prioritário no WhatsApp.
+              Preencha seu nome e selecione a cidade para atendimento prioritário no WhatsApp.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Full Name */}
+            <div>
+              <label className="block text-xs font-bold text-gray-300 uppercase mb-1.5 font-mono">
+                Seu Nome Completo
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="Ex: Carlos Eduardo"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl bg-[#0c0d12] border border-amber-500/30 text-white text-sm focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 transition"
+              />
+            </div>
+
             {/* City Selection */}
             <div>
               <label className="block text-xs font-bold text-gray-300 uppercase mb-1.5 font-mono">
-                Selecione a Unidade / Cidade
+                Selecione a Cidade
               </label>
               <select
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-[#0c0d12] border border-amber-500/30 text-white text-sm focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 transition"
               >
-                {LOCATIONS.map((loc) => (
-                  <option key={loc.id} value={loc.name}>
-                    {loc.name} - {loc.stateCode} {loc.hasSpecialForklift ? '(+ Empilhadeira)' : ''}
+                {CITIES_LIST.map((city, idx) => (
+                  <option key={idx} value={`${city.name} - ${city.state}`}>
+                    {city.name} / {city.state}
                   </option>
                 ))}
-              </select>
-            </div>
-
-            {/* Package Selection */}
-            <div>
-              <label className="block text-xs font-bold text-gray-300 uppercase mb-1.5 font-mono">
-                Pacote ou Máquina
-              </label>
-              <select
-                value={selectedPackage}
-                onChange={(e) => setSelectedPackage(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-[#0c0d12] border border-amber-500/30 text-white text-sm focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 transition"
-              >
-                <option value="Trilha Completa (3 Máquinas)">⭐ Trilha Completa (Mini Pá, Retroescavadeira e Escavadeira)</option>
-                <option value="Escavadeira Hidráulica">Escavadeira Hidráulica</option>
-                <option value="Retroescavadeira">Retroescavadeira</option>
-                <option value="Mini Pá Carregadeira">Mini Pá Carregadeira (Bobcat)</option>
-                <option value="Empilhadeira (Porto Alegre)">Empilhadeira (Especial Porto Alegre)</option>
               </select>
             </div>
 
@@ -95,20 +93,20 @@ export const CourseModal: React.FC<CourseModalProps> = ({ isOpen, onClose }) => 
             <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200 space-y-1.5">
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>Sem exigência de CNH. Idade mínima: 16 anos.</span>
+                <span>Formação prática nas 3 máquinas (Mini Pá, Retro e Escavadeira).</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>Carteira e certificado CREA em até 24h.</span>
+                <span>Sem exigência de CNH. Carteira e certificado CREA em até 24h.</span>
               </div>
             </div>
 
             {/* Submit CTA */}
             <button
               type="submit"
-              className="w-full py-4 px-6 bg-gradient-to-r from-emerald-500 via-emerald-600 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(16,185,129,0.4)] transition flex items-center justify-center gap-2"
+              className="w-full py-4 px-6 bg-[#25D366] hover:bg-[#20bd5a] text-black font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(37,211,102,0.4)] transition flex items-center justify-center gap-2 font-display"
             >
-              <MessageSquare className="w-4 h-4 text-white" />
+              <WhatsAppIcon className="w-5 h-5 text-black" />
               <span>Confirmar Vaga no WhatsApp</span>
             </button>
           </form>
@@ -119,3 +117,4 @@ export const CourseModal: React.FC<CourseModalProps> = ({ isOpen, onClose }) => 
     </AnimatePresence>
   );
 };
+

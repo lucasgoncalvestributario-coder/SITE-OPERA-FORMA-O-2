@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { TrustStatsBar } from './components/TrustStatsBar';
-import { AboutSection } from './components/AboutSection';
-import { DifferentialsSection } from './components/DifferentialsSection';
-import { CoursesSection } from './components/CoursesSection';
+import { GallerySection } from './components/GallerySection';
+import { MachinesSection } from './components/MachinesSection';
 import { NormasRegulamentadorasSection } from './components/NormasRegulamentadorasSection';
-import { CreaSection } from './components/CreaSection';
 import { LearningGuaranteeSection } from './components/LearningGuaranteeSection';
 import { DirectorSection } from './components/DirectorSection';
-import { GallerySection } from './components/GallerySection';
 import { LocationsSection } from './components/LocationsSection';
 import { FAQSection } from './components/FAQSection';
 import { ContactFooter } from './components/ContactFooter';
@@ -30,16 +27,13 @@ export default function App() {
 
       {/* Main Page Flow */}
       <main>
-        <Hero onOpenCourseModal={handleOpenCourseModal} />
+        <Hero />
         <TrustStatsBar />
-        <AboutSection />
-        <DifferentialsSection onOpenCourseModal={handleOpenCourseModal} />
-        <CoursesSection onOpenCourseModal={handleOpenCourseModal} />
+        <GallerySection />
+        <MachinesSection />
         <NormasRegulamentadorasSection />
-        <CreaSection />
         <LearningGuaranteeSection />
         <DirectorSection />
-        <GallerySection />
         <LocationsSection />
         <FAQSection />
       </main>
@@ -59,3 +53,4 @@ export default function App() {
     </div>
   );
 }
+

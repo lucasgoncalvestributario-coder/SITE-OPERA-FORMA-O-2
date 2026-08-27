@@ -1,4 +1,4 @@
-import { CourseItem, CityLocation, GalleryItem, DifferentialItem } from '../types';
+import { CourseItem, CityLocation, GalleryItem } from '../types';
 
 export const COMPANY_INFO = {
   name: 'Opera Formação',
@@ -16,83 +16,93 @@ export const COMPANY_INFO = {
   creaCredencial: 'Credenciado CREA-BR / Reg. Nacional de Treinamentos',
 };
 
-export const DIFFERENTIALS: DifferentialItem[] = [
+export const MACHINES_LIST = [
   {
-    id: '1',
-    title: 'Curso mais acessível da região',
-    description: 'Investimento justo e cabível no bolso, com altíssimo retorno e possibilidade de pagamento facilitado no boleto e cartão.',
-    iconName: 'BadgePercent',
-    badge: 'Preço Imbatível',
+    id: 'escavadeira',
+    name: 'Escavadeira Hidráulica',
+    tag: 'Máquina Pesada de Alto Porte',
+    image: 'https://i.ibb.co/KxvnVWxH/ESCAVADEIRA.png',
+    description: 'A gigante das obras civis e mineração. Treinamento completo em sistemas hidráulicos, giro de 360°, taludes, escavação profunda e nivelamento.',
+    highlights: [
+      'Operação real na cabine de comando',
+      'Manuseio de joysticks e comandos hidráulicos',
+      'Escavação, carga de caminhões e abertura de valas',
+      'Procedimentos diários de manutenção e segurança NR-11/NR-12'
+    ],
   },
   {
-    id: '2',
-    title: 'Qualidade e suporte mais altos do mercado',
-    description: 'Acompanhamento VIP antes, durante e após o curso com instrutores com anos de vivência no canteiro de obras.',
-    iconName: 'ShieldCheck',
-    badge: 'Suporte Vitalício',
+    id: 'retroescavadeira',
+    name: 'Retroescavadeira',
+    tag: 'Versatilidade e Alta Demanda',
+    image: 'https://i.ibb.co/XfKSRwnT/RETRO.png',
+    description: 'A máquina mais solicitada no setor de terraplanagem e obras públicas. Domínio da concha dianteira e do braço escavador traseiro com sapatas de apoio.',
+    highlights: [
+      'Controle de concha dianteira e lança traseira',
+      'Estabilização com sapatas e manobras em canteiro',
+      'Valamento, aterro, nivelamento e carregamento',
+      'Normas de segurança operacional e tráfego'
+    ],
   },
   {
-    id: '3',
-    title: 'Credenciado pelo CREA',
-    description: 'Certificado com registro de responsabilidade técnica oficial no CREA, reconhecido nacionalmente por grandes empreiteiras.',
-    iconName: 'Award',
-    badge: 'Chancela Oficial',
-  },
-  {
-    id: '4',
-    title: 'Carteira de operador e certificado em até 24h',
-    description: 'Você sai do curso pronto para apresentar sua carteirinha física e digital e começar a trabalhar imediatamente.',
-    iconName: 'Zap',
-    badge: 'Emissão Expressa',
+    id: 'bobcat',
+    name: 'Mini Pá Carregadeira (Bobcat)',
+    tag: 'Agilidade em Espaços Reduzidos',
+    image: 'https://i.ibb.co/CpDgXHDF/MINI-PA.png',
+    description: 'Essencial para obras urbanas, galpões e terraplanagem compacta. Aprendizado de manobras ágeis, giro em raio zero e movimentação rápida de material.',
+    highlights: [
+      'Giro em 360° e manobras de precisão',
+      'Carregamento, nivelamento e transporte de terra',
+      'Sensibilidade nos comandos hidrostáticos',
+      'Inspeção pré-operacional e segurança no canteiro'
+    ],
   },
 ];
 
-export const MAIN_COURSE_PACKAGE = {
-  title: 'Pacote Trilha de Ouro - Formação Tripla de Máquinas Pesadas',
-  subtitle: 'Domine as 3 máquinas mais requisitadas pela construção civil e mineração em um único final de semana prático.',
-  duration: '3 dias (Sexta, Sábado e Domingo)',
-  mode: 'Aulas Teóricas e Práticas Presenciais',
-  cnhRequired: false,
-  cnhDetail: 'Não exige CNH (Habilitação) para fazer o curso ou operar no canteiro de obras!',
-  minAge: '16 anos',
-  investment: 'Aproximadamente um salário mínimo (com opções de parcelamento)',
-  creaAccreditation: 'Credenciamento Oficial CREA',
-  deliveryTime: 'Certificado & Carteira de Operador entregues em até 24h após conclusão',
-  machinesIncluded: [
-    {
-      name: 'Mini Pá Carregadeira (Bobcat)',
-      desc: 'Manuseio ágil, carga, nivelamento e movimentação de terra em espaços reduzidos.',
-      icon: 'Truck',
-    },
-    {
-      name: 'Retroescavadeira',
-      desc: 'Escavação, valamento, movimentação de cargas e operação com concha dupla.',
-      icon: 'Construct',
-    },
-    {
-      name: 'Escavadeira Hidráulica',
-      desc: 'Gigante das obras: sistemas hidráulicos avançados, giro de 360°, taludes e escavação pesada.',
-      icon: 'HardHat',
-    },
-  ],
-  poaSpecialNote: '📍 Atenção Alunos do RS: Na unidade de Porto Alegre também disponibilizamos o curso especializado de Empilhadeira!',
-};
+export const CITIES_LIST = [
+  // São Paulo (SP)
+  { name: 'Diadema', state: 'SP' },
+  { name: 'Sorocaba', state: 'SP' },
+  { name: 'São Paulo', state: 'SP' },
+  { name: 'Praia Grande', state: 'SP' },
 
-export const LOCATIONS: CityLocation[] = [
-  { id: '1', name: 'Itajaí', state: 'Santa Catarina', stateCode: 'SC', nextDate: 'Próxima turma: Este final de semana' },
-  { id: '2', name: 'Palhoça', state: 'Santa Catarina', stateCode: 'SC', nextDate: 'Próxima turma: Inscrições abertas' },
-  { id: '3', name: 'Balneário Camboriú', state: 'Santa Catarina', stateCode: 'SC', nextDate: 'Próxima turma: Vagas limitadas' },
-  { id: '4', name: 'Porto Alegre', state: 'Rio Grande do Sul', stateCode: 'RS', nextDate: 'Próxima turma: Com opção de Empilhadeira', hasSpecialForklift: true },
-  { id: '5', name: 'Passo Fundo', state: 'Rio Grande do Sul', stateCode: 'RS', nextDate: 'Próxima turma: Inscrições abertas' },
-  { id: '6', name: 'Erechim', state: 'Rio Grande do Sul', stateCode: 'RS', nextDate: 'Próxima turma: Turma confirmada' },
-  { id: '7', name: 'Curitiba', state: 'Paraná', stateCode: 'PR', nextDate: 'Próxima turma: Este final de semana' },
-  { id: '8', name: 'Londrina', state: 'Paraná', stateCode: 'PR', nextDate: 'Próxima turma: Vagas abertas' },
-  { id: '9', name: 'Toledo', state: 'Paraná', stateCode: 'PR', nextDate: 'Próxima turma: Inscrições abertas' },
-  { id: '10', name: 'Sorocaba', state: 'São Paulo', stateCode: 'SP', nextDate: 'Próxima turma: Turma confirmada' },
-  { id: '11', name: 'Diadema', state: 'São Paulo', stateCode: 'SP', nextDate: 'Próxima turma: Vagas abertas' },
-  { id: '12', name: 'Goiânia', state: 'Goiás', stateCode: 'GO', nextDate: 'Próxima turma: Inscrições abertas' },
-  { id: '13', name: 'Rio de Janeiro', state: 'Rio de Janeiro', stateCode: 'RJ', nextDate: 'Próxima turma: Vagas limitadas' },
+  // Minas Gerais (MG)
+  { name: 'Belo Horizonte', state: 'MG' },
+  { name: 'Uberlândia', state: 'MG' },
+  { name: 'Ipatinga', state: 'MG' },
+
+  // Rio de Janeiro (RJ)
+  { name: 'Rio de Janeiro', state: 'RJ' },
+  { name: 'Duque de Caxias', state: 'RJ' },
+  { name: 'Volta Redonda', state: 'RJ' },
+
+  // Espírito Santo (ES)
+  { name: 'Vitória', state: 'ES' },
+  { name: 'Serra', state: 'ES' },
+  { name: 'Linhares', state: 'ES' },
+
+  // Paraná (PR)
+  { name: 'Toledo', state: 'PR' },
+  { name: 'Londrina', state: 'PR' },
+  { name: 'Curitiba', state: 'PR' },
+
+  // Santa Catarina (SC)
+  { name: 'Balneário Camboriú', state: 'SC' },
+  { name: 'Palhoça', state: 'SC' },
+  { name: 'Itajaí', state: 'SC' },
+  { name: 'Itaperiú', state: 'SC' },
+  { name: 'Chapecó', state: 'SC' },
+
+  // Rio Grande do Sul (RS)
+  { name: 'Porto Alegre', state: 'RS' },
+  { name: 'Pelotas', state: 'RS' },
+  { name: 'Santa Rosa', state: 'RS' },
+  { name: 'Erechim', state: 'RS' },
+
+  // Goiás (GO)
+  { name: 'Goiânia', state: 'GO' },
 ];
+
+export const CITIES_LIST_28 = CITIES_LIST;
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
@@ -171,62 +181,23 @@ export const DIRECTOR_INFO = {
   name: 'Valiandro Bock',
   role: 'Diretor e CEO da Opera Formação',
   photo: 'https://i.ibb.co/0jB2Ycnv/Whats-App-Image-2026-08-20-at-14-00-24.jpg',
-  bio: 'A frente da Opera Formação, Valiandro Bock consolidou a escola como referência nacional na capacitação de operadores de máquinas pesadas. Com uma visão voltada para a inclusão profissional, inovação nos métodos de ensino prático e máxima agilidade na emissão de certificados, a liderança de Valiandro impulsiona milhares de alunos a ingressarem com autoridade e rapidez no mercado de trabalho industrial e da construção civil.',
-  quote: '"Nossa missão é transformar a vida dos nossos alunos em apenas 3 dias, entregando uma profissão valorizada, um certificado reconhecido e a confiança necessária para operar grandes máquinas."',
   stats: [
-    { label: 'Anos de Tradição', value: '+10 Anos' },
-    { label: 'Alunos Certificados', value: '+15 Mil' },
-    { label: 'Cidades Atendidas', value: '13 Cidades' },
-    { label: 'Aprovação de Alunos', value: '99.8%' },
+    { label: 'Experiência no Ramo', value: 'Mais de 5 Anos' },
+    { label: 'Alunos Formados', value: 'Mais de 1.650' },
+    { label: 'Cidades Atendidas', value: '26 Cidades' },
   ],
 };
 
 export const REGULATORY_STANDARDS = [
-  {
-    code: 'NR-06',
-    title: 'Equipamentos de Proteção Individual (EPI)',
-    description: 'Diretrizes sobre seleção, uso correto, conservação e inspeção de EPIs obrigatórios para operadores em canteiros e frentes de trabalho.',
-  },
-  {
-    code: 'NR-07',
-    title: 'Controle Médico e Saúde Ocupacional',
-    description: 'Parâmetros de saúde, ergonomia e aptidão física e psicológica para a condução segura de maquinários pesados.',
-  },
-  {
-    code: 'NR-11',
-    title: 'Transporte, Movimentação e Manuseio de Materiais',
-    description: 'Norma central para operação, içamento, manobra e movimentação segura de cargas, terras e materiais pesados.',
-  },
-  {
-    code: 'NR-12',
-    title: 'Segurança no Trabalho em Máquinas e Equipamentos',
-    description: 'Procedimentos operacionais, dispositivos de parada, zonas de perigo, proteção de partes móveis e manutenção preventiva.',
-  },
-  {
-    code: 'NR-18',
-    title: 'Segurança e Saúde na Indústria da Construção',
-    description: 'Regulamentação das condições e do meio ambiente de trabalho específicos para canteiros de obras e terraplanagem.',
-  },
-  {
-    code: 'NR-22',
-    title: 'Segurança e Saúde Ocupacional na Mineração',
-    description: 'Protocolos de segurança operacional para frentes de lavra, pedreiras e movimentação de minérios.',
-  },
-  {
-    code: 'NR-26',
-    title: 'Sinalização de Segurança',
-    description: 'Identificação por cores, avisos sonoros, sinalização de isolamento e comunicação visual de tráfego de máquinas.',
-  },
-  {
-    code: 'NR-28',
-    title: 'Fiscalização e Penalidades',
-    description: 'Conhecimento dos critérios técnicos de conformidade perante os órgãos fiscalizadores do Ministério do Trabalho.',
-  },
-  {
-    code: 'NR-31',
-    title: 'Segurança no Trabalho no Agronegócio',
-    description: 'Normas de segurança para operação de máquinas em áreas rurais, silvicultura, preparo de solo e colheita.',
-  },
+  { code: 'NR-06', title: 'Equipamentos de Proteção Individual (EPI)' },
+  { code: 'NR-07', title: 'Controle Médico e Saúde Ocupacional' },
+  { code: 'NR-11', title: 'Transporte, Movimentação e Manuseio de Materiais' },
+  { code: 'NR-12', title: 'Segurança no Trabalho em Máquinas e Equipamentos' },
+  { code: 'NR-18', title: 'Segurança e Saúde na Indústria da Construção' },
+  { code: 'NR-22', title: 'Segurança e Saúde Ocupacional na Mineração' },
+  { code: 'NR-26', title: 'Sinalização de Segurança' },
+  { code: 'NR-28', title: 'Fiscalização e Penalidades' },
+  { code: 'NR-31', title: 'Segurança no Trabalho no Agronegócio' },
 ];
 
 export const PHYSICAL_UNITS = [
@@ -253,24 +224,27 @@ export const PHYSICAL_UNITS = [
 ];
 
 export const LEARNING_GUARANTEE = {
-  badge: 'Compromisso de Excelência',
-  headline: 'APRENDEU? ÓTIMO. AINDA PRECISA REFORÇAR? VOLTE.',
-  title: 'Garantia de Aprendizado Opera Formação',
+  headline1: 'APRENDEU? ÓTIMO.',
+  headline2: 'AINDA PRECISA REFORÇAR? VOLTE.',
   description: 'Na Opera Formação, seu sucesso profissional é prioridade absoluta. O aluno que por qualquer motivo sentir necessidade de reforçar a prática ou fixar melhor o conteúdo pode retornar na próxima turma e refazer o treinamento gratuitamente.',
-  keyPoints: [
-    'Retorno gratuito na turma subsequente sem taxas extras',
-    'Mais horas de cabine e comando individual para fixação total',
-    'Acompanhamento direto e personalizado com o instrutor',
-    'Segurança e confiança antes de ingressar no mercado de trabalho',
-  ],
 };
 
 export const CREA_INSTITUTIONAL = {
   title: 'FORMAÇÃO COM CREDIBILIDADE E RECONHECIMENTO',
-  subtitle: 'Credenciamento CREA',
-  council: 'Conselho Regional de Engenharia e Agronomia',
   description: 'A Opera Formação possui credenciamento junto ao CREA, emitindo certificados e carteiras de operador com total respaldo técnico e validade em todo o território nacional. Essa chancela garante que grandes construtoras, empreiteiras e mineradoras reconheçam de imediato a sua capacitação profissional.',
+  items: [
+    {
+      title: 'Responsabilidade Técnica',
+      description: 'Supervisão técnica por profissionais devidamente habilitados no sistema CONFEA/CREA.',
+    },
+    {
+      title: 'Aceitação em Grandes Obras',
+      description: 'Certificados prontos para admissão em empreiteiras, portos, indústrias e mineradoras.',
+    },
+  ],
 };
+
+export const CREA_LOGO_URL = 'https://i.ibb.co/Gvy2cfQs/logotipo-CREA.png';
 
 export const FAQ_ITEMS = [
   {
@@ -290,8 +264,8 @@ export const FAQ_ITEMS = [
     answer: 'O curso é dividido estrategicamente no final de semana: Sexta-feira com aula teórica e normas regulamentadoras aplicáveis, Sábado e Domingo inteiros dedicados à prática intensiva nas máquinas pesadas de verdade.',
   },
   {
-    question: 'Quais máquinas estão inclusas no curso?',
-    answer: 'No pacote principal estão inclusas a Mini Pá Carregadeira (Bobcat), Retroescavadeira e Escavadeira Hidráulica. Na unidade de Porto Alegre/RS, também há a inclusão especial do curso de Empilhadeira.',
+    question: 'Quais máquinas estão inclusas na formação?',
+    answer: 'Estão inclusas a Escavadeira Hidráulica, Retroescavadeira e Mini Pá Carregadeira (Bobcat).',
   },
   {
     question: 'Como funciona a Garantia de Aprendizado?',
@@ -302,3 +276,4 @@ export const FAQ_ITEMS = [
     answer: 'O investimento total fica em torno de aproximadamente um salário mínimo para o pacote completo de 3 máquinas. Oferecemos condições facilitadas de pagamento no cartão de crédito, boleto ou PIX.',
   },
 ];
+
