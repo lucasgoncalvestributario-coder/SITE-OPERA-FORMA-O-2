@@ -21,9 +21,10 @@ import { DustParticles } from './DustParticles';
 export const TestimonialsSection: React.FC = () => {
   const [activeVideo, setActiveVideo] = useState<{
     title: string;
-    videoUrl?: string;
-    poster?: string;
+    youtubeId?: string;
+    isShort?: boolean;
   } | null>(null);
+  const [inlinePlayingId, setInlinePlayingId] = useState<string | null>(null);
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -36,12 +37,14 @@ export const TestimonialsSection: React.FC = () => {
         return <Award className="w-3.5 h-3.5" />;
       case 'Reconhecimento Global':
         return <Globe className="w-3.5 h-3.5" />;
+      case 'Mulheres no Comando':
+        return <Star className="w-3.5 h-3.5" />;
+      case 'Experiência Prática':
+        return <HardHat className="w-3.5 h-3.5" />;
       case 'Transição de Carreira':
         return <Briefcase className="w-3.5 h-3.5" />;
-      case 'Alta Performance':
-        return <HardHat className="w-3.5 h-3.5" />;
       default:
-        return <Star className="w-3.5 h-3.5" />;
+        return <Sparkles className="w-3.5 h-3.5" />;
     }
   };
 
@@ -178,15 +181,15 @@ export const TestimonialsSection: React.FC = () => {
               key={item.id}
               className="snap-start shrink-0 w-[88vw] sm:w-[360px] md:w-[400px] lg:w-[410px] flex flex-col bg-[#12141c]/95 rounded-2xl border border-white/10 hover:border-amber-400/60 overflow-hidden shadow-[0_12px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_15px_40px_rgba(234,179,8,0.18)] transition-all duration-300 group"
             >
-              {/* Video Cover Container */}
+              {/* Video Cover / Player Container */}
               <div className="relative aspect-video w-full overflow-hidden bg-black/80">
-                {item.videoUrl ? (
-                  <video
-                    src={item.videoUrl}
-                    poster={item.poster}
-                    preload="none"
-                    controls
-                    className="w-full h-full object-cover"
+                {inlinePlayingId === item.id && item.youtubeId ? (
+                  <iframe
+                    className="w-full h-full border-0"
+                    src={`https://www.youtube-nocookie.com/embed/${item.youtubeId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`}
+                    title={item.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                    allowFullScreen
                   />
                 ) : (
                   <div className="relative w-full h-full">
@@ -195,7 +198,7 @@ export const TestimonialsSection: React.FC = () => {
                       alt={item.title}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90 contrast-105 select-none"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-95 select-none"
                       referrerPolicy="no-referrer"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#12141c] via-black/40 to-black/20" />
@@ -205,11 +208,11 @@ export const TestimonialsSection: React.FC = () => {
                       onClick={() =>
                         setActiveVideo({
                           title: item.title,
-                          videoUrl: item.videoUrl,
-                          poster: item.poster,
+                          youtubeId: item.youtubeId,
+                          isShort: item.isShort,
                         })
                       }
-                      className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 focus:outline-none"
+                      className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 focus:outline-none cursor-pointer"
                       aria-label={`Assistir depoimento: ${item.title}`}
                     >
                       <div className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black shadow-[0_0_25px_rgba(234,179,8,0.7)] group-hover:shadow-[0_0_35px_rgba(234,179,8,0.95)] transition-all">
@@ -221,7 +224,7 @@ export const TestimonialsSection: React.FC = () => {
                 )}
 
                 {/* Category / Achievement Badge Tag */}
-                <div className="absolute top-3 left-3 z-10">
+                <div className="absolute top-3 left-3 z-10 pointer-events-none">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/85 backdrop-blur-md border border-amber-400/40 text-amber-300 font-display font-bold text-[11px] uppercase tracking-wider shadow-md">
                     {getIcon(item.category)}
                     <span>{item.badge}</span>
@@ -229,7 +232,7 @@ export const TestimonialsSection: React.FC = () => {
                 </div>
 
                 {/* Subtle Slide Index Pill */}
-                <div className="absolute top-3 right-3 z-10">
+                <div className="absolute top-3 right-3 z-10 pointer-events-none">
                   <span className="text-[10px] font-mono text-gray-300 bg-black/75 px-2 py-0.5 rounded-md border border-white/10">
                     0{index + 1}
                   </span>
@@ -251,13 +254,27 @@ export const TestimonialsSection: React.FC = () => {
                 </div>
 
                 <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-gray-400 font-body">
-                  <span className="flex items-center gap-1.5 text-amber-400 font-medium">
+                  <button
+                    onClick={() =>
+                      setActiveVideo({
+                        title: item.title,
+                        youtubeId: item.youtubeId,
+                        isShort: item.isShort,
+                      })
+                    }
+                    className="flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-medium transition cursor-pointer"
+                  >
                     <Volume2 className="w-3.5 h-3.5" />
-                    <span>Depoimento em Vídeo</span>
-                  </span>
-                  <span className="text-gray-400 font-mono text-[10px] bg-white/5 px-2 py-0.5 rounded border border-white/5">
-                    Opera Formação
-                  </span>
+                    <span>Assistir Depoimento</span>
+                  </button>
+                  <a
+                    href={item.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-amber-300 font-mono text-[10px] bg-white/5 hover:bg-white/10 px-2 py-0.5 rounded border border-white/5 transition"
+                  >
+                    YouTube ↗
+                  </a>
                 </div>
               </div>
             </div>
@@ -289,7 +306,7 @@ export const TestimonialsSection: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
             onClick={() => setActiveVideo(null)}
           >
             <motion.div
@@ -297,31 +314,40 @@ export const TestimonialsSection: React.FC = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-3xl bg-[#12141c] border border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl"
+              className={`relative w-full ${
+                activeVideo.isShort ? 'max-w-sm sm:max-w-md' : 'max-w-3xl'
+              } bg-[#12141c] border border-amber-500/40 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.9),0_0_30px_rgba(245,158,11,0.2)]`}
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-white/10 bg-black/40">
-                <h4 className="text-sm sm:text-base font-bold text-white font-display">
-                  {activeVideo.title}
-                </h4>
+              <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-white/10 bg-black/50">
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
+                  <h4 className="text-sm sm:text-base font-bold text-white font-display truncate">
+                    {activeVideo.title}
+                  </h4>
+                </div>
                 <button
                   onClick={() => setActiveVideo(null)}
-                  className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition"
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition cursor-pointer"
                   aria-label="Fechar vídeo"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* Modal Video / Content Area */}
-              <div className="relative aspect-video w-full bg-black flex items-center justify-center">
-                {activeVideo.videoUrl ? (
-                  <video
-                    src={activeVideo.videoUrl}
-                    poster={activeVideo.poster}
-                    controls
-                    autoPlay
-                    className="w-full h-full object-contain"
+              {/* Modal Video Area with YouTube Player */}
+              <div
+                className={`relative w-full bg-black flex items-center justify-center ${
+                  activeVideo.isShort ? 'aspect-[9/16] max-h-[78vh]' : 'aspect-video'
+                }`}
+              >
+                {activeVideo.youtubeId ? (
+                  <iframe
+                    className="w-full h-full border-0"
+                    src={`https://www.youtube-nocookie.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`}
+                    title={activeVideo.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                    allowFullScreen
                   />
                 ) : (
                   <div className="p-6 text-center space-y-3">
@@ -329,14 +355,32 @@ export const TestimonialsSection: React.FC = () => {
                       <Play className="w-6 h-6 translate-x-0.5" />
                     </div>
                     <div className="text-sm font-semibold text-white">
-                      Vídeo sendo preparado para exibição
+                      Vídeo não encontrado
                     </div>
-                    <p className="text-xs text-gray-400 max-w-md mx-auto">
-                      O link deste depoimento foi reservado e será integrado diretamente nesta tela.
-                    </p>
                   </div>
                 )}
               </div>
+
+              {/* Modal Footer with Direct YouTube link */}
+              {activeVideo.youtubeId && (
+                <div className="px-4 py-2.5 bg-black/60 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
+                  <span className="text-[11px] text-gray-400 font-body">
+                    Vídeo oficial da Opera Formação
+                  </span>
+                  <a
+                    href={
+                      activeVideo.isShort
+                        ? `https://youtube.com/shorts/${activeVideo.youtubeId}`
+                        : `https://youtu.be/${activeVideo.youtubeId}`
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/10 hover:bg-amber-400/20 text-gray-200 hover:text-amber-300 border border-white/15 hover:border-amber-400/40 transition font-medium text-xs"
+                  >
+                    Assistir no YouTube ↗
+                  </a>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}

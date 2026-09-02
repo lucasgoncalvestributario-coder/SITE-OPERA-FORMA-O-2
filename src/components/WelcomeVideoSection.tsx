@@ -64,12 +64,27 @@ export const WelcomeVideoSection: React.FC<VideoSectionProps> = ({
             <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
               <iframe
                 className="w-full h-full border-0"
-                src={`https://www.youtube.com/embed/${cleanVideoId}?autoplay=0&rel=0&playsinline=1&modestbranding=1`}
+                src={`https://www.youtube-nocookie.com/embed/${cleanVideoId}?rel=0&playsinline=1&modestbranding=1`}
                 title="Vídeo de Apresentação Opera Formação"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                 allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
               />
+            </div>
+
+            {/* Quick backup bar under player */}
+            <div className="px-4 py-2.5 bg-[#0a0c13] border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-400">
+              <span className="flex items-center gap-1.5 text-amber-400">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                Vídeo Oficial da Apresentação
+              </span>
+              <a
+                href={`https://youtu.be/${cleanVideoId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 hover:border-amber-400/40 transition font-medium"
+              >
+                Assistir no YouTube ↗
+              </a>
             </div>
 
           </div>
