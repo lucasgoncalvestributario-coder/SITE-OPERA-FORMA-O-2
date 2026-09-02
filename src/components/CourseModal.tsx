@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, HardHat, Check } from 'lucide-react';
 import { WhatsAppIcon } from './BrandIcons';
@@ -15,6 +15,16 @@ export const CourseModal: React.FC<CourseModalProps> = ({ isOpen, onClose }) => 
   const [selectedCity, setSelectedCity] = useState('Itajaí - SC');
   const { openWhatsAppSurvey } = useWhatsAppSurvey();
 
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -26,20 +36,41 @@ export const CourseModal: React.FC<CourseModalProps> = ({ isOpen, onClose }) => 
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div className="fixed inset-0 z-50 overflow-y-auto overscroll-contain flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+        <div className="fixed inset-0" onClick={onClose} />
         
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          className="relative max-w-lg w-full bg-[#12141d] border border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden"
+          initial={{ opacity: 0, scale: 0.93, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.93, y: 30 }}
+          drag="y"
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragElastic={{ top: 0.2, bottom: 0.5 }}
+          onDragEnd={(_, info) => {
+            if (info.offset.y > 90 || info.velocity.y > 400 || info.offset.y < -100) {
+              onClose();
+            }
+          }}
+          className="relative max-w-lg w-full my-auto bg-[#12141d] border border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] z-10 touch-pan-y"
+          onClick={(e) => e.stopPropagation()}
         >
+          {/* Slide Indicator */}
+          <div className="flex flex-col items-center justify-center pb-3 cursor-grab active:cursor-grabbing select-none">
+            <div className="w-12 h-1.5 bg-amber-400/60 rounded-full mb-1" />
+            <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider">
+              Deslize para voltar
+            </span>
+          </div>
+
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full bg-black/60 text-amber-400 hover:text-white border border-amber-500/30"
+            className="absolute top-4 right-4 flex items-center gap-1 px-3 py-1 rounded-full bg-black/70 text-amber-400 hover:text-white border border-amber-500/30 text-xs font-mono font-bold cursor-pointer transition active:scale-95"
+            aria-label="Voltar"
+            title="Voltar"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
+            <span>Voltar</span>
           </button>
 
           {/* Header */}
