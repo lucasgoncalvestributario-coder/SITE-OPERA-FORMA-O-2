@@ -1,52 +1,16 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { 
-  Play, 
-  Award, 
-  Globe, 
-  Star, 
-  Sparkles, 
-  X, 
-  Volume2, 
   ChevronLeft, 
-  ChevronRight, 
-  MoveRight, 
-  Briefcase, 
-  HardHat, 
-  Quote 
+  ChevronRight
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
 import { TESTIMONIALS_DATA } from '../data/content';
 import { DustParticles } from './DustParticles';
 
 export const TestimonialsSection: React.FC = () => {
-  const [activeVideo, setActiveVideo] = useState<{
-    title: string;
-    youtubeId?: string;
-    isShort?: boolean;
-  } | null>(null);
-  const [inlinePlayingId, setInlinePlayingId] = useState<string | null>(null);
-
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const touchStartXRef = useRef<number | null>(null);
   const touchEndXRef = useRef<number | null>(null);
-
-  const getIcon = (category: string) => {
-    switch (category) {
-      case 'Concurso Público':
-        return <Award className="w-3.5 h-3.5" />;
-      case 'Reconhecimento Global':
-        return <Globe className="w-3.5 h-3.5" />;
-      case 'Mulheres no Comando':
-        return <Star className="w-3.5 h-3.5" />;
-      case 'Experiência Prática':
-        return <HardHat className="w-3.5 h-3.5" />;
-      case 'Transição de Carreira':
-        return <Briefcase className="w-3.5 h-3.5" />;
-      default:
-        return <Sparkles className="w-3.5 h-3.5" />;
-    }
-  };
 
   // Scroll tracking to update the active indicator index
   const handleScroll = () => {
@@ -101,17 +65,6 @@ export const TestimonialsSection: React.FC = () => {
     }
   };
 
-  // Keyboard navigation when testimonials are focused or in view
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (activeVideo) {
-        if (e.key === 'Escape') setActiveVideo(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeVideo]);
-
   return (
     <section
       id="depoimentos"
@@ -139,7 +92,7 @@ export const TestimonialsSection: React.FC = () => {
           <div className="flex items-center gap-2 self-start md:self-end">
             <button
               onClick={handlePrev}
-              className="p-2.5 sm:p-3 rounded-xl bg-[#141724] border border-amber-500/30 hover:border-amber-400 text-gray-300 hover:text-white transition-all shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
+              className="p-2.5 sm:p-3 rounded-xl bg-[#141724] border border-amber-500/30 hover:border-amber-400 text-gray-300 hover:text-white transition-all shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-400/50 cursor-pointer"
               aria-label="Depoimento anterior"
             >
               <ChevronLeft className="w-5 h-5 text-amber-400" />
@@ -147,7 +100,7 @@ export const TestimonialsSection: React.FC = () => {
 
             <button
               onClick={handleNext}
-              className="p-2.5 sm:p-3 rounded-xl bg-[#141724] border border-amber-500/30 hover:border-amber-400 text-gray-300 hover:text-white transition-all shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
+              className="p-2.5 sm:p-3 rounded-xl bg-[#141724] border border-amber-500/30 hover:border-amber-400 text-gray-300 hover:text-white transition-all shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-400/50 cursor-pointer"
               aria-label="Próximo depoimento"
             >
               <ChevronRight className="w-5 h-5 text-amber-400" />
@@ -176,67 +129,22 @@ export const TestimonialsSection: React.FC = () => {
             WebkitOverflowScrolling: 'touch',
           }}
         >
-          {TESTIMONIALS_DATA.map((item, index) => (
+          {TESTIMONIALS_DATA.map((item) => (
             <div
               key={item.id}
               className="snap-start shrink-0 w-[88vw] sm:w-[360px] md:w-[400px] lg:w-[410px] flex flex-col bg-[#12141c]/95 rounded-2xl border border-white/10 hover:border-amber-400/60 overflow-hidden shadow-[0_12px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_15px_40px_rgba(234,179,8,0.18)] transition-all duration-300 group"
             >
-              {/* Video Cover / Player Container */}
-              <div className="relative aspect-video w-full overflow-hidden bg-black/80">
-                {inlinePlayingId === item.id && item.youtubeId ? (
+              {/* Direct YouTube Video Embed Container */}
+              <div className="relative aspect-video w-full overflow-hidden bg-black">
+                {item.youtubeId ? (
                   <iframe
                     className="w-full h-full border-0"
-                    src={`https://www.youtube-nocookie.com/embed/${item.youtubeId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`}
+                    src={`https://www.youtube-nocookie.com/embed/${item.youtubeId}?rel=0&playsinline=1&modestbranding=1`}
                     title={item.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                     allowFullScreen
                   />
-                ) : (
-                  <div className="relative w-full h-full">
-                    <img
-                      src={item.poster}
-                      alt={item.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-95 select-none"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#12141c] via-black/40 to-black/20" />
-
-                    {/* Interactive Play Button */}
-                    <button
-                      onClick={() =>
-                        setActiveVideo({
-                          title: item.title,
-                          youtubeId: item.youtubeId,
-                          isShort: item.isShort,
-                        })
-                      }
-                      className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 focus:outline-none cursor-pointer"
-                      aria-label={`Assistir depoimento: ${item.title}`}
-                    >
-                      <div className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black shadow-[0_0_25px_rgba(234,179,8,0.7)] group-hover:shadow-[0_0_35px_rgba(234,179,8,0.95)] transition-all">
-                        <div className="absolute -inset-1.5 rounded-full border border-amber-400/60 animate-ping opacity-30 pointer-events-none" />
-                        <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-black translate-x-0.5" />
-                      </div>
-                    </button>
-                  </div>
-                )}
-
-                {/* Category / Achievement Badge Tag */}
-                <div className="absolute top-3 left-3 z-10 pointer-events-none">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/85 backdrop-blur-md border border-amber-400/40 text-amber-300 font-display font-bold text-[11px] uppercase tracking-wider shadow-md">
-                    {getIcon(item.category)}
-                    <span>{item.badge}</span>
-                  </span>
-                </div>
-
-                {/* Subtle Slide Index Pill */}
-                <div className="absolute top-3 right-3 z-10 pointer-events-none">
-                  <span className="text-[10px] font-mono text-gray-300 bg-black/75 px-2 py-0.5 rounded-md border border-white/10">
-                    0{index + 1}
-                  </span>
-                </div>
+                ) : null}
               </div>
 
               {/* Card Body */}
@@ -252,30 +160,6 @@ export const TestimonialsSection: React.FC = () => {
                     {item.description}
                   </p>
                 </div>
-
-                <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-gray-400 font-body">
-                  <button
-                    onClick={() =>
-                      setActiveVideo({
-                        title: item.title,
-                        youtubeId: item.youtubeId,
-                        isShort: item.isShort,
-                      })
-                    }
-                    className="flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-medium transition cursor-pointer"
-                  >
-                    <Volume2 className="w-3.5 h-3.5" />
-                    <span>Assistir Depoimento</span>
-                  </button>
-                  <a
-                    href={item.youtubeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-amber-300 font-mono text-[10px] bg-white/5 hover:bg-white/10 px-2 py-0.5 rounded border border-white/5 transition"
-                  >
-                    YouTube ↗
-                  </a>
-                </div>
               </div>
             </div>
           ))}
@@ -287,7 +171,7 @@ export const TestimonialsSection: React.FC = () => {
             <button
               key={idx}
               onClick={() => scrollToIndex(idx)}
-              className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none ${
+              className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
                 activeIndex === idx
                   ? 'w-8 bg-gradient-to-r from-amber-400 to-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.7)]'
                   : 'w-2.5 bg-gray-700 hover:bg-gray-500'
@@ -298,93 +182,6 @@ export const TestimonialsSection: React.FC = () => {
         </div>
 
       </div>
-
-      {/* Video Modal Player */}
-      <AnimatePresence>
-        {activeVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
-            onClick={() => setActiveVideo(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className={`relative w-full ${
-                activeVideo.isShort ? 'max-w-sm sm:max-w-md' : 'max-w-3xl'
-              } bg-[#12141c] border border-amber-500/40 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.9),0_0_30px_rgba(245,158,11,0.2)]`}
-            >
-              {/* Modal Header */}
-              <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-white/10 bg-black/50">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
-                  <h4 className="text-sm sm:text-base font-bold text-white font-display truncate">
-                    {activeVideo.title}
-                  </h4>
-                </div>
-                <button
-                  onClick={() => setActiveVideo(null)}
-                  className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition cursor-pointer"
-                  aria-label="Fechar vídeo"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Modal Video Area with YouTube Player */}
-              <div
-                className={`relative w-full bg-black flex items-center justify-center ${
-                  activeVideo.isShort ? 'aspect-[9/16] max-h-[78vh]' : 'aspect-video'
-                }`}
-              >
-                {activeVideo.youtubeId ? (
-                  <iframe
-                    className="w-full h-full border-0"
-                    src={`https://www.youtube-nocookie.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`}
-                    title={activeVideo.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                    allowFullScreen
-                  />
-                ) : (
-                  <div className="p-6 text-center space-y-3">
-                    <div className="w-14 h-14 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400 flex items-center justify-center mx-auto">
-                      <Play className="w-6 h-6 translate-x-0.5" />
-                    </div>
-                    <div className="text-sm font-semibold text-white">
-                      Vídeo não encontrado
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Modal Footer with Direct YouTube link */}
-              {activeVideo.youtubeId && (
-                <div className="px-4 py-2.5 bg-black/60 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
-                  <span className="text-[11px] text-gray-400 font-body">
-                    Vídeo oficial da Opera Formação
-                  </span>
-                  <a
-                    href={
-                      activeVideo.isShort
-                        ? `https://youtube.com/shorts/${activeVideo.youtubeId}`
-                        : `https://youtu.be/${activeVideo.youtubeId}`
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/10 hover:bg-amber-400/20 text-gray-200 hover:text-amber-300 border border-white/15 hover:border-amber-400/40 transition font-medium text-xs"
-                  >
-                    Assistir no YouTube ↗
-                  </a>
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
