@@ -64,10 +64,11 @@ export const WelcomeVideoSection: React.FC<VideoSectionProps> = ({
             <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
               <iframe
                 className="w-full h-full border-0"
-                src={`https://www.youtube.com/embed/${cleanVideoId}?rel=0&modestbranding=1`}
+                src={`https://www.youtube.com/embed/${cleanVideoId}?autoplay=0&rel=0&playsinline=1&modestbranding=1`}
                 title="Vídeo de Apresentação Opera Formação"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                 allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
 
