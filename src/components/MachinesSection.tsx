@@ -2,24 +2,21 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { MACHINES_LIST } from '../data/content';
 import { CheckCircle2, HardHat } from 'lucide-react';
+import { DustParticles } from './DustParticles';
 
 export const MachinesSection: React.FC = () => {
   return (
     <section id="maquinas" className="relative py-24 sm:py-28 bg-[#ffffff] text-slate-900 overflow-hidden border-t border-slate-200">
       
-      {/* Background Lighting */}
+      {/* Background Lighting & Ultra-Subtle Ambient Dust */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-amber-100/50 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:28px_28px] opacity-70 pointer-events-none" />
+      <DustParticles theme="light" density="low" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-amber-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
-            <HardHat className="w-4 h-4 text-amber-400" />
-            <span>Treinamento Prático Real</span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 uppercase font-display tracking-tight leading-tight">
             Máquinas de <span className="text-amber-600">Formação</span>
           </h2>
@@ -48,6 +45,8 @@ export const MachinesSection: React.FC = () => {
                   <img
                     src={machine.image}
                     alt={machine.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-105"
                     referrerPolicy="no-referrer"
                   />

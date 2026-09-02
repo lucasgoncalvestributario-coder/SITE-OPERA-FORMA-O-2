@@ -2,22 +2,19 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { CITIES_LIST, PHYSICAL_UNITS } from '../data/content';
 import { MapPin, Building2, ShieldCheck, Map } from 'lucide-react';
+import { DustParticles } from './DustParticles';
 
 export const LocationsSection: React.FC = () => {
   return (
     <section id="unidades" className="relative py-20 sm:py-24 bg-[#090b10] text-white overflow-hidden border-t border-amber-500/20">
-      {/* Background Lighting */}
+      {/* Background Lighting & Atmospheric Dust */}
       <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <DustParticles theme="dark" density="normal" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
-            <MapPin className="w-4 h-4 text-amber-400" />
-            <span>Presença Nacional</span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase font-display tracking-tight leading-tight">
             Cidades de <span className="text-amber-400">Atuação</span>
           </h2>

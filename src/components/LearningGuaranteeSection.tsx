@@ -3,14 +3,16 @@ import { motion } from 'motion/react';
 import { RotateCcw } from 'lucide-react';
 import { LEARNING_GUARANTEE } from '../data/content';
 import { OFFICIAL_LOGO_URL } from './LoadingScreen';
+import { DustParticles } from './DustParticles';
 
 export const LearningGuaranteeSection: React.FC = () => {
   return (
     <section id="garantia" className="relative py-20 sm:py-24 bg-[#090b10] text-white overflow-hidden border-t border-amber-500/20">
-      {/* Subtle Glow */}
+      {/* Subtle Glow & Earth Dust */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <DustParticles theme="dark" density="normal" />
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Highlighted Container */}
         <motion.div
@@ -25,18 +27,16 @@ export const LearningGuaranteeSection: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             
-            {/* Left: School Logo & Icon */}
+            {/* Left: School Logo */}
             <div className="md:col-span-4 flex flex-col items-center justify-center text-center p-6 rounded-2xl bg-black/60 border border-amber-500/30 shadow-inner">
               <img
                 src={OFFICIAL_LOGO_URL}
                 alt="Opera Formação Logo"
-                className="w-28 sm:w-32 h-auto object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)] mb-3"
+                loading="lazy"
+                decoding="async"
+                className="w-28 sm:w-32 h-auto object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]"
                 referrerPolicy="no-referrer"
               />
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-[11px] font-mono font-bold uppercase tracking-wider">
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Garantia de Ensino</span>
-              </div>
             </div>
 
             {/* Right: Exact Copy */}

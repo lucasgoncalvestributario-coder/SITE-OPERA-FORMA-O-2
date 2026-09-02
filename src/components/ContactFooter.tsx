@@ -3,8 +3,11 @@ import { COMPANY_INFO, CREA_LOGO_URL, CITIES_LIST } from '../data/content';
 import { Phone, MapPin, Clock, Send, ShieldCheck } from 'lucide-react';
 import { WhatsAppIcon, InstagramIcon, FacebookIcon } from './BrandIcons';
 import { OFFICIAL_LOGO_URL } from './LoadingScreen';
+import { DustParticles } from './DustParticles';
+import { useWhatsAppSurvey } from '../context/WhatsAppContext';
 
 export const ContactFooter: React.FC = () => {
+  const { openWhatsAppSurvey } = useWhatsAppSurvey();
   const [formState, setFormState] = useState({
     name: '',
     city: 'Itajaí - SC',
@@ -13,20 +16,20 @@ export const ContactFooter: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const message = `Olá! Meu nome é ${formState.name}. Tenho interesse no curso de formação prática em máquinas pesadas (3 Máquinas) para a cidade de ${formState.city}. Gostaria de mais informações sobre datas e valores!`;
-    const whatsappUrl = `https://wa.me/554791572989?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    openWhatsAppSurvey(message);
   };
 
   return (
     <footer id="contato" className="relative pt-20 pb-12 bg-gold-gradient-subtle border-t border-amber-500/20 overflow-hidden">
       
-      {/* Background Lighting */}
+      {/* Background Lighting & Subtle Dust */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-amber-500/10 rounded-full blur-[180px] pointer-events-none" />
 
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" />
+      <DustParticles theme="dark" density="low" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Contact Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-start">
@@ -41,6 +44,8 @@ export const ContactFooter: React.FC = () => {
                 <img
                   src={OFFICIAL_LOGO_URL}
                   alt="Logo Oficial da Escola"
+                  loading="lazy"
+                  decoding="async"
                   className="relative h-16 sm:h-20 md:h-24 w-auto object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.7)]"
                   referrerPolicy="no-referrer"
                 />
@@ -51,6 +56,8 @@ export const ContactFooter: React.FC = () => {
                 <img
                   src={CREA_LOGO_URL}
                   alt="Logotipo Oficial do CREA"
+                  loading="lazy"
+                  decoding="async"
                   className="h-7 sm:h-8 w-auto object-contain"
                   referrerPolicy="no-referrer"
                 />
@@ -65,11 +72,10 @@ export const ContactFooter: React.FC = () => {
             <div className="space-y-4 text-xs sm:text-sm">
               
               {/* WhatsApp */}
-              <a
-                href={COMPANY_INFO.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3.5 rounded-xl bg-gold-gradient-card border border-amber-500/25 hover:border-[#25D366]/60 transition group"
+              <button
+                onClick={() => openWhatsAppSurvey()}
+                type="button"
+                className="w-full text-left flex items-center gap-3 p-3.5 rounded-xl bg-gold-gradient-card border border-amber-500/25 hover:border-[#25D366]/60 transition group cursor-pointer"
               >
                 <div className="p-2 rounded-lg bg-[#25D366]/20 text-[#25D366] group-hover:bg-[#25D366] group-hover:text-black transition">
                   <WhatsAppIcon className="w-5 h-5" />
@@ -80,7 +86,7 @@ export const ContactFooter: React.FC = () => {
                     {COMPANY_INFO.phoneFormatted}
                   </span>
                 </div>
-              </a>
+              </button>
 
               {/* Address */}
               <div className="flex items-center gap-3 p-3.5 rounded-xl bg-gold-gradient-card border border-amber-500/25">
@@ -211,6 +217,8 @@ export const ContactFooter: React.FC = () => {
             <img
               src={OFFICIAL_LOGO_URL}
               alt="Logo Opera Formação"
+              loading="lazy"
+              decoding="async"
               className="h-6 w-auto object-contain"
               referrerPolicy="no-referrer"
             />
@@ -219,6 +227,8 @@ export const ContactFooter: React.FC = () => {
               <img
                 src={CREA_LOGO_URL}
                 alt="Logo CREA"
+                loading="lazy"
+                decoding="async"
                 className="h-4 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />

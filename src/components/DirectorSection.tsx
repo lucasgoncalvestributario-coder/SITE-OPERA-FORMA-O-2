@@ -2,24 +2,21 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Building2, Users, MapPin, Briefcase } from 'lucide-react';
 import { DIRECTOR_INFO } from '../data/content';
+import { DustParticles } from './DustParticles';
 
 export const DirectorSection: React.FC = () => {
   return (
     <section id="diretor" className="relative py-20 sm:py-24 bg-[#ffffff] text-slate-900 overflow-hidden border-t border-slate-200">
       
-      {/* Background Subtle Ambience */}
+      {/* Background Subtle Ambience & Light Dust Particles */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-amber-100/50 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:28px_28px] opacity-70 pointer-events-none" />
+      <DustParticles theme="light" density="low" />
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-amber-400 text-xs font-mono uppercase tracking-widest mb-3 shadow-sm">
-            <Building2 className="w-4 h-4 text-amber-400" />
-            <span>Diretoria Executiva</span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 uppercase font-display tracking-tight">
             Valiandro <span className="text-amber-600">Bock</span>
           </h2>
@@ -48,6 +45,8 @@ export const DirectorSection: React.FC = () => {
                 <img
                   src={DIRECTOR_INFO.photo}
                   alt={DIRECTOR_INFO.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover filter brightness-105 saturate-125 contrast-105 group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />

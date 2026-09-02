@@ -188,6 +188,42 @@ export const DIRECTOR_INFO = {
   ],
 };
 
+export const TESTIMONIALS_DATA = [
+  {
+    id: 'depoimento-1',
+    category: 'Depoimento 1',
+    title: 'Aprovado em 1º Lugar no Concurso',
+    subtitle: 'Aluno formado pela Opera conquista o primeiro lugar para operador de máquinas',
+    description: 'História inspiradora de superação e domínio técnico que garantiu a nota máxima na prova prática e a aprovação no concurso municipal.',
+    badge: '🏆 Depoimento 1',
+    accentColor: 'from-amber-500 to-yellow-400',
+    videoUrl: '', // Espaço reservado para inserção do 1º vídeo
+    poster: 'https://i.ibb.co/V0W6kXPm/IMG-0695-JPG.jpg',
+  },
+  {
+    id: 'depoimento-2',
+    category: 'Depoimento 2',
+    title: 'Alunos de Outros Países',
+    subtitle: 'Profissionais internacionais que escolheram a Opera Formação no Brasil',
+    description: 'Alunos vindos do exterior para vivenciar a metodologia prática intensiva e obter certificação técnica com respaldo nacional e internacional.',
+    badge: '🌎 Depoimento 2',
+    accentColor: 'from-sky-500 to-blue-400',
+    videoUrl: '', // Espaço reservado para inserção do 2º vídeo
+    poster: 'https://i.ibb.co/W4hG3m7c/Whats-App-Image-2026-08-20-at-13-56-07-2.jpg',
+  },
+  {
+    id: 'depoimento-3',
+    category: 'Depoimento 3',
+    title: 'Aluna em Destaque no Canteiro',
+    subtitle: 'Precisão, técnica e liderança feminina na cabine de máquinas pesadas',
+    description: 'Depoimento de aluna quebrando barreiras no setor da construção civil com excelência, segurança e grande habilidade operacional.',
+    badge: '⭐ Depoimento 3',
+    accentColor: 'from-rose-500 to-amber-400',
+    videoUrl: '', // Espaço reservado para inserção do 3º vídeo
+    poster: 'https://i.ibb.co/h1hg9cjz/Whats-App-Image-2026-08-20-at-13-56-06-1.jpg',
+  },
+];
+
 export const REGULATORY_STANDARDS = [
   { code: 'NR-06', title: 'Equipamentos de Proteção Individual (EPI)' },
   { code: 'NR-07', title: 'Controle Médico e Saúde Ocupacional' },

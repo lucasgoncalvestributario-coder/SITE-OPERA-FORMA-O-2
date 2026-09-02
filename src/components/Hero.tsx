@@ -4,27 +4,22 @@ import { ChevronDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center pt-28 sm:pt-36 pb-16 sm:pb-20 overflow-hidden bg-[#07080a]">
+    <section className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center pt-32 sm:pt-40 md:pt-44 pb-16 sm:pb-20 overflow-hidden bg-[#07080a]">
       
-      {/* Background Video Layer - Vivid, Bright & Clear Machinery in Action */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="https://i.ibb.co/h1hg9cjz/Whats-App-Image-2026-08-20-at-13-56-06-1.jpg"
-          className="w-full h-full object-cover filter brightness-95 contrast-110 saturate-125"
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-heavy-machinery-excavator-digging-ground-41399-large.mp4" type="video/mp4" />
-        </video>
+      {/* Background Image Layer - Maximum Sharpness & Native Quality */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[#07080a]">
+        <img
+          src="https://i.ibb.co/HjxcdCW/Chat-GPT-Image-2-de-set-de-2026-09-33-17.png"
+          alt="Formação de operadores de máquinas pesadas"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+          className="w-full h-full object-cover object-center"
+          referrerPolicy="no-referrer"
+        />
 
-        {/* Crisp Semi-Transparent Contrast Overlays - Keeps machines fully visible */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#07080a] via-black/40 to-black/30 z-10" />
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/30 to-[#07080a]/80 z-10" />
-
-        {/* Warm Golden Atmosphere */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-amber-400/20 rounded-full blur-[140px] pointer-events-none z-10" />
+        {/* Minimal Clean Dark Gradient for Text Contrast without hazing */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#07080a] via-transparent to-black/30 pointer-events-none" />
       </div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-4 sm:pt-8">
@@ -36,10 +31,6 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.7 }}
           className="max-w-5xl mx-auto space-y-4"
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-black/60 border border-amber-400/50 backdrop-blur-md text-amber-300 text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.25em] shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-            Opera Formação
-          </span>
-
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white uppercase font-display leading-[1.08] drop-shadow-2xl">
             Formação Profissional para Operadores de{' '}
             <span className="animate-shine-light relative inline-block drop-shadow-[0_0_25px_rgba(251,191,36,0.5)]">

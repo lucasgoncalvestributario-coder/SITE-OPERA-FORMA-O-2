@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { WhatsAppIcon, InstagramIcon } from './BrandIcons';
 import { COMPANY_INFO } from '../data/content';
 import { OFFICIAL_LOGO_URL } from './LoadingScreen';
+import { useWhatsAppSurvey } from '../context/WhatsAppContext';
 
 interface NavbarProps {
   onOpenCourseModal?: () => void;
@@ -11,24 +12,30 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openWhatsAppSurvey } = useWhatsAppSurvey();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 30) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const shouldScrolled = window.scrollY > 30;
+          setIsScrolled((prev) => (prev !== shouldScrolled ? shouldScrolled : prev));
+          ticking = false;
+        });
+        ticking = true;
       }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
     { name: 'Início', href: '#' },
+    { name: 'Vídeo', href: '#video-saudacao' },
     { name: 'Galeria', href: '#galeria' },
     { name: 'Máquinas', href: '#maquinas' },
-    { name: 'Normas', href: '#normas' },
+    { name: 'Depoimentos', href: '#depoimentos' },
     { name: 'Garantia', href: '#garantia' },
     { name: 'Diretoria', href: '#diretor' },
     { name: 'Cidades', href: '#unidades' },
@@ -50,19 +57,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
           {/* Prominent Yellow Logo with Elegant Golden Glow */}
           <a
             href="#"
-            className="group flex items-center relative py-1 focus:outline-none"
+            className="group flex items-center relative py-1.5 focus:outline-none"
             title="Opera Formação - Início"
           >
             {/* Elegant Golden Aura Glow */}
-            <div className="absolute inset-0 bg-yellow-400/20 rounded-full blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <div className="absolute inset-0 bg-yellow-400/25 rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none scale-125" />
 
             <img
               src={OFFICIAL_LOGO_URL}
               alt="Logo Opera Formação"
-              className={`relative w-auto object-contain transition-all duration-300 filter drop-shadow-[0_0_16px_rgba(234,179,8,0.55)] group-hover:drop-shadow-[0_0_24px_rgba(234,179,8,0.85)] ${
+              decoding="async"
+              fetchPriority="high"
+              className={`relative w-auto object-contain transition-all duration-300 filter drop-shadow-[0_0_20px_rgba(234,179,8,0.65)] group-hover:drop-shadow-[0_0_32px_rgba(234,179,8,0.95)] ${
                 isScrolled
-                  ? 'h-14 sm:h-16 md:h-18'
-                  : 'h-16 sm:h-20 md:h-24 lg:h-28'
+                  ? 'h-16 sm:h-20 md:h-22 lg:h-24'
+                  : 'h-20 sm:h-28 md:h-32 lg:h-36'
               }`}
               referrerPolicy="no-referrer"
             />
@@ -105,15 +114,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
               </button>
             )}
 
-            <a
-              href={COMPANY_INFO.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => openWhatsAppSurvey()}
               className="flex items-center gap-1.5 px-3.5 lg:px-4 py-2 bg-[#12141c] hover:bg-[#181a24] text-emerald-400 font-extrabold text-xs uppercase tracking-wider rounded-xl border border-[#25D366]/40 hover:border-[#25D366] transition-all font-display"
             >
               <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
               <span className="hidden lg:inline">WhatsApp</span>
-            </a>
+            </button>
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -180,15 +187,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
               <span>Instagram @ESCOLA.OPERA.FORMACAO</span>
             </a>
 
-            <a
-              href={COMPANY_INFO.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openWhatsAppSurvey();
+              }}
               className="flex items-center justify-center gap-2 py-3 bg-[#11131a] text-[#25D366] font-bold text-xs uppercase rounded-xl border border-[#25D366]/40 font-display"
             >
               <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
               <span>Falar no WhatsApp ({COMPANY_INFO.phoneFormatted})</span>
-            </a>
+            </button>
           </div>
         </div>
       )}

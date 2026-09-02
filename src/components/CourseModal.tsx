@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, HardHat, Check } from 'lucide-react';
 import { WhatsAppIcon } from './BrandIcons';
-import { COMPANY_INFO, CITIES_LIST } from '../data/content';
+import { CITIES_LIST } from '../data/content';
+import { useWhatsAppSurvey } from '../context/WhatsAppContext';
 
 interface CourseModalProps {
   isOpen: boolean;
@@ -12,15 +13,15 @@ interface CourseModalProps {
 export const CourseModal: React.FC<CourseModalProps> = ({ isOpen, onClose }) => {
   const [name, setName] = useState('');
   const [selectedCity, setSelectedCity] = useState('Itajaí - SC');
+  const { openWhatsAppSurvey } = useWhatsAppSurvey();
 
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = `Olá! Meu nome é ${name}. Gostaria de informações sobre o curso prático de máquinas pesadas (3 Máquinas) para a cidade de ${selectedCity}.\n\nPor favor, me informe o valor e a data da próxima turma!`;
-    const whatsappUrl = `https://wa.me/554791572989?text=${encodeURIComponent(msg)}`;
-    window.open(whatsappUrl, '_blank');
     onClose();
+    openWhatsAppSurvey(msg);
   };
 
   return (

@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { FAQ_ITEMS } from '../data/content';
 import { HelpCircle, ChevronDown } from 'lucide-react';
 import { WhatsAppIcon } from './BrandIcons';
-import { COMPANY_INFO } from '../data/content';
+import { DustParticles } from './DustParticles';
+import { useWhatsAppSurvey } from '../context/WhatsAppContext';
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { openWhatsAppSurvey } = useWhatsAppSurvey();
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -20,16 +22,12 @@ export const FAQSection: React.FC = () => {
 
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:30px_30px] opacity-40 pointer-events-none" />
+      <DustParticles theme="light" density="low" />
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-amber-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-md">
-            <HelpCircle className="w-4 h-4 text-amber-400" />
-            <span>Tire Suas Dúvidas</span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 uppercase font-display tracking-tight">
             Perguntas <span className="text-amber-600">Frequentes</span>
           </h2>
@@ -89,15 +87,14 @@ export const FAQSection: React.FC = () => {
           <p className="text-slate-300 text-xs sm:text-sm font-body max-w-xl mx-auto">
             Nossa equipe de atendimento no WhatsApp está disponível diariamente das 07h30 às 00h para te ajudar.
           </p>
-          <a
-            href={COMPANY_INFO.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(212,175,55,0.4)] transition font-display transform hover:scale-105"
+          <button
+            onClick={() => openWhatsAppSurvey('Olá! Estava visualizando o FAQ da Opera Formação e tenho uma dúvida.')}
+            type="button"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(212,175,55,0.4)] transition font-display transform hover:scale-105 cursor-pointer"
           >
             <WhatsAppIcon className="w-5 h-5 text-black" />
             <span>Falar com Atendente Agora</span>
-          </a>
+          </button>
         </div>
 
       </div>
