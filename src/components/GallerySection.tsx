@@ -132,8 +132,9 @@ export const GallerySection: React.FC = () => {
                 <img
                   src={item.image}
                   alt="Foto do Treinamento"
-                  loading="lazy"
-                  decoding="async"
+                  loading={idx < 3 ? 'eager' : 'lazy'}
+                  decoding={idx < 3 ? 'sync' : 'async'}
+                  fetchPriority={idx < 2 ? 'high' : 'auto'}
                   className="w-full h-full object-cover select-none"
                   referrerPolicy="no-referrer"
                 />
@@ -200,8 +201,9 @@ export const GallerySection: React.FC = () => {
               <img
                 src={item.image}
                 alt="Treinamento Opera Formação"
-                loading="lazy"
-                decoding="async"
+                loading={idx < 5 ? 'eager' : 'lazy'}
+                decoding={idx < 5 ? 'sync' : 'async'}
+                fetchPriority={idx < 4 ? 'high' : 'auto'}
                 className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-500 select-none"
                 referrerPolicy="no-referrer"
               />
