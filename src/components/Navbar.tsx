@@ -54,27 +54,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCourseModal }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Prominent Yellow Logo with Elegant Golden Glow */}
+          {/* Brand Title / Back to top link without image */}
           <a
             href="#"
-            className="group flex items-center relative py-1.5 focus:outline-none"
+            className="flex items-center gap-2 py-1.5 focus:outline-none group"
             title="Opera Formação - Início"
           >
-            {/* Elegant Golden Aura Glow */}
-            <div className="absolute inset-0 bg-yellow-400/25 rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none scale-125" />
-
-            <img
-              src={OFFICIAL_LOGO_URL}
-              alt="Logo Opera Formação"
-              decoding="async"
-              fetchPriority="high"
-              className={`relative w-auto object-contain transition-all duration-300 filter drop-shadow-[0_0_20px_rgba(234,179,8,0.65)] group-hover:drop-shadow-[0_0_32px_rgba(234,179,8,0.95)] ${
-                isScrolled
-                  ? 'h-16 sm:h-20 md:h-22 lg:h-24'
-                  : 'h-20 sm:h-28 md:h-32 lg:h-36'
-              }`}
-              referrerPolicy="no-referrer"
-            />
+            <span className="text-sm sm:text-base font-black tracking-wider uppercase font-display bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent group-hover:from-amber-200 group-hover:to-yellow-300 transition-all drop-shadow-sm">
+              OPERA FORMAÇÃO
+            </span>
           </a>
 
           {/* Desktop Nav Links */}

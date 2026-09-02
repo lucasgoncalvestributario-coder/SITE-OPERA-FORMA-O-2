@@ -46,7 +46,7 @@ export const ContactFooter: React.FC = () => {
                   alt="Logo Oficial da Escola"
                   loading="lazy"
                   decoding="async"
-                  className="relative h-16 sm:h-20 md:h-24 w-auto object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.7)]"
+                  className="relative h-24 sm:h-32 md:h-36 w-auto object-contain drop-shadow-[0_0_25px_rgba(212,175,55,0.85)]"
                   referrerPolicy="no-referrer"
                 />
               </div>
